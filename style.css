@@ -9,19 +9,52 @@
 }
 
 html {
+    height: 100%;
     font-size: 100%;
+}
+
+body {
+    height: 100%;
 }
 
 /* wrapper styles */
 
-
+.clx__grid {
+    display: grid;
+    grid-template:
+                "nav nav nav nav"
+                "asd main main main"
+                "ftr ftr ftr ftr"; 
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 60px auto 60px;
+    height: 100%;
+}
 
 /* navbar styles */
 
 .clx__navbar {
-    height: 50px;
+    grid-area: nav;
     background-color: blue;
 }
 
-/* aside */
+/* filters */
+
+.clx__filters {
+    grid-area: asd;
+    background-color: brown;
+    height: 100%;
+}
 /* main */
+
+.clx__cards {
+    grid-area: main;
+    background-color: burlywood;
+    height: 100%;
+}
+
+/* footer */
+
+.clx__footer {
+    grid-area: ftr;
+    background-color: green;
+}
