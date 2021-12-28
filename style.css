@@ -34,21 +34,31 @@ body {
 
 .clx__navbar {
     grid-area: nav;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
     background-color: blue;
+    padding: 0.5rem;
+}
+
+.clx__navbar-avatar {
+    color: white;
+    font-size: 2.5rem;
+
 }
 
 /* filters */
 
 .clx__filters {
     grid-area: asd;
-    background-color: brown;
+    /* background-color: brown; */
     height: 100%;
 }
 /* main */
 
 .clx__cards {
     grid-area: main;
-    background-color: burlywood;
+    /* background-color: burlywood; */
     height: 100%;
 }
 
@@ -56,5 +66,5 @@ body {
 
 .clx__footer {
     grid-area: ftr;
-    background-color: green;
+    background-color: blue;
 }
