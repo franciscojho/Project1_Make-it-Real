@@ -1,0 +1,16 @@
+/* global styles */
+html {
+    box-sizing: border-box;
+    font-size: 100%;
+    margin: 0;
+}
+
+/* navbar styles */
+
+.clx__navbar {
+    height: 50px;
+    background-color: blue;
+}
+
+/* aside */
+/* main */
