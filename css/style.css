@@ -40,18 +40,29 @@
     }   
 }
 
-/* container */
+/* section */
+
+.clx__section {
+    grid-area: container;
+    padding: 0 2rem;
+}
 
 .clx__container {
-    grid-area: container;
-    height: 100%;
     display: flex;
     flex-direction: row;
+    height: 100%;
+    margin: auto;
+}
+
+@media (min-width: 1440px) {
+    .clx__container {
+        max-width: 1440px;
+    }   
 }
 
 /* filters */
 
-.clx__filters {
+.clx__filters-wrapper {
     max-width: 300px;
     min-width: 250px;
     background-color: brown;
