@@ -1,5 +1,19 @@
-/* wrapper styles */
+/* var and config rem*/
+:root{
+    --primary: #003CAF;
+    --premium-color: #9935B2;
+    --top-color: #192AC1;
+    --title-color: #1D08A3;
+}
 
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 16px; /*1rem = 10px*/
+}
+/* wrapper styles */
 .clx__grid {
     display: grid;
     grid-template:
@@ -15,8 +29,8 @@
 
 .clx__header {
     grid-area: header;
-    background-color: blue;
-    padding: 0 2rem;
+    background-color: var(--primary);
+    padding: 4rem 3.2rem; /*Por verificar*/
 }
 
 .clx__navbar {
@@ -24,14 +38,29 @@
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
-    margin: auto;
-    padding: 0.5rem;
+    margin-top: -0.7rem;
+    padding: 0.8rem;
+    justify-content: space-between;
 }
 
 .clx__navbar-avatar {
     color: white;
-    font-size: 2.5rem;
+    font-size: 4rem;
+    margin-top: 0.2rem;
+}
 
+.clx__navbar .clx__navbar-nameuser {
+    color: white;
+    position: absolute;
+    font-size:1.7rem;
+    font-family: Segoe UI historic, segoe UI, helvetica, arial, sans-serif;
+    font-weight: 300;
+    margin-right: 4.7rem;
+}
+
+.clx__navbar-logo {
+    width: 17rem;
+    margin-top:0.5rem;
 }
 
 @media (min-width: 1440px) {
@@ -44,14 +73,14 @@
 
 .clx__section {
     grid-area: container;
-    padding: 0 2rem;
+    padding: 0 3.2rem;
 }
 
 .clx__container {
     display: flex;
     flex-direction: row;
     height: 100%;
-    margin: auto;
+    margin-top: 2rem;
 }
 
 @media (min-width: 1440px) {
@@ -65,10 +94,27 @@
 .clx__filters-wrapper {
     max-width: 300px;
     min-width: 250px;
-    background-color: brown;
+    /*background-color: brown; POR CONFIRMAR*/
     flex-grow: 1;
+    font-family: Mukta;
+    margin-top: 2.5rem;
+    margin-left: 2rem;
+    font-weight:300;
+
 }
 
+.clx__filters-title {
+    font-size: 2.72rem;
+    font-weight: 600;
+    border-bottom: 1px solid black;
+    padding-right: 14rem;
+}
+
+.clx__filters-select {
+    font-size: 1.7rem;
+    font-family: Mukta;
+    font-weight:300;
+}
 /* cards wrapper */
 
 .clx__cards-wrapper {
@@ -76,8 +122,8 @@
     display: flex;
     flex-grow: 2;
     justify-content: center;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 3.2rem;
+    padding: 3.2rem;
     overflow: hidden;
 }
 
@@ -87,17 +133,17 @@
     display: flex;
     flex-direction: column;
     border: 1px solid black;
-    padding: 1rem;
+    padding: 1.6rem;
     position: relative;
 }
 
 .clx__card-title {
-    margin: 0.2rem 0;
+    margin: 0.32rem 0;
 }
 
 .clx__rating-wrapper {
     flex-grow: 0.5;
-    padding: 0.2rem 0;
+    padding: 0.32rem 0;
 }
 
 .clx__rating-wrapper i {
@@ -106,28 +152,29 @@
 
 .clx__card-desc {
     flex-grow: 4;
-    padding: 0.2rem 0;
+    padding: 0.32rem 0;
     text-align: justify;
 }
 
 .clx__card-btn-1 {
     align-self: center;
-    font-size: 0.8rem;
-    padding: 0.5rem;
+    font-size: 1.
+    28rem;
+    padding: 0.8rem;
     width: 50%;
 }
 
 .clx__card-btn-2 {
-    font-size: 0.8rem;
-    padding: 0.5rem;
+    font-size: 1.28rem;
+    padding: 0.8rem;
     position: absolute;
     top: 0;
     right: 0;
 }
 
-/* footer */
+/* footer "POR VERIFICAR"
 
 .clx__footer {
     grid-area: footer;
-    background-color: blue;
-}
+    background-color: var(--primary);
+} */
