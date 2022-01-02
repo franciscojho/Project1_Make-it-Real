@@ -1,0 +1,43 @@
+/* header styles */
+
+.clx__header {
+    grid-area: header;
+    background-color: var(--primary);
+    padding: 4rem 3.2rem; /*Por verificar*/
+}
+
+.clx__navbar {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    margin-top: -0.7rem;
+    padding: 0.8rem;
+    justify-content: space-between;
+}
+
+.clx__navbar-avatar {
+    color: white;
+    font-size: 4rem;
+    margin-top: 0.2rem;
+}
+
+.clx__navbar .clx__navbar-nameuser {
+    color: white;
+    position: absolute;
+    font-size:1.7rem;
+    font-family: Segoe UI historic, segoe UI, helvetica, arial, sans-serif;
+    font-weight: 300;
+    margin-right: 4.7rem;
+}
+
+.clx__navbar-logo {
+    width: 17rem;
+    margin-top:0.5rem;
+}
+
+@media (min-width: 1440px) {
+    .clx__navbar {
+        max-width: 1440px;
+    }   
+}

@@ -1,0 +1,56 @@
+/* cards wrapper */
+
+.clx__cards-wrapper {
+    /* background-color: tomato; */
+    display: flex;
+    flex-grow: 2;
+    justify-content: center;
+    gap: 3.2rem;
+    padding: 3.2rem;
+    overflow: hidden;
+}
+
+.clx__card {
+    width: 300px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 1.6rem;
+    position: relative;
+}
+
+.clx__card-title {
+    margin: 0.32rem 0;
+}
+
+.clx__rating-wrapper {
+    flex-grow: 0.5;
+    padding: 0.32rem 0;
+}
+
+.clx__rating-wrapper i {
+    color: orange;
+}
+
+.clx__card-desc {
+    flex-grow: 4;
+    padding: 0.32rem 0;
+    text-align: justify;
+}
+
+.clx__card-btn-1 {
+    align-self: center;
+    font-size: 1.
+    28rem;
+    padding: 0.8rem;
+    width: 50%;
+}
+
+.clx__card-btn-2 {
+    font-size: 1.28rem;
+    padding: 0.8rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
