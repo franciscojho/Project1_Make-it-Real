@@ -3,24 +3,17 @@
 .clx__filters-wrapper {
     max-width: 300px;
     min-width: 250px;
-    /*background-color: brown; POR CONFIRMAR*/
     flex-grow: 1;
-    font-family: Mukta;
     margin-top: 2.5rem;
-    margin-left: 2rem;
+    padding: 1rem;
     font-weight:300;
 
 }
 
 .clx__filters-title {
-    font-size: 2.72rem;
     font-weight: 600;
     border-bottom: 1px solid black;
-    padding-right: 14rem;
 }
 
 .clx__filters-select {
-    font-size: 1.7rem;
-    font-family: Mukta;
-    font-weight:300;
 }
