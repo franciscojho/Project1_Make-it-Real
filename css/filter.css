@@ -1,9 +1,7 @@
 /* filters */
 
 .clx__filters-wrapper {
-    max-width: 300px;
-    min-width: 250px;
-    flex-grow: 1;
+    /* flex-grow: 1; */
     margin-top: 2.5rem;
     padding: 1rem;
     font-weight:300;
@@ -16,4 +14,11 @@
 }
 
 .clx__filters-select {
+}
+
+@media (min-width: 1080px) {
+    .clx__filters-wrapper {
+        max-width: 300px;
+        min-width: 250px;
+    }
 }
