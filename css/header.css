@@ -9,10 +9,15 @@
     height: 100%;
     display: flex;
     align-items: center;
-    flex-direction: row-reverse;
     margin: auto;
     padding: 0 2rem;
     justify-content: space-between;
+}
+
+.clx__avatar-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .clx__navbar-avatar {
@@ -23,11 +28,6 @@
 
 .clx__navbar-nameuser {
     color: white;
-    position: absolute;
-    font-size: 1.2rem;
-    font-family: Segoe UI historic, segoe UI, helvetica, arial, sans-serif;
-    font-weight: 300;
-    margin-right: 4.7rem;
 }
 
 .clx__navbar-logo {
@@ -37,5 +37,5 @@
 @media (min-width: 1440px) {
     .clx__navbar {
         max-width: 1440px;
-    }   
+    }
 }
