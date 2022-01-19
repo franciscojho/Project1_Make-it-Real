@@ -1,0 +1,6 @@
+ /* footer "POR VERIFICAR" */
+
+ .clx__footer {
+    grid-area: footer;
+    background-color: var(--primary);
+}

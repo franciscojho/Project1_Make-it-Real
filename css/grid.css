@@ -1,0 +1,10 @@
+.clx__grid {
+    display: grid;
+    grid-template:
+                "header header"
+                "container container"
+                "footer footer"; 
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 70px auto 70px;
+    height: 100%;
+}
