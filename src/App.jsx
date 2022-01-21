@@ -1,7 +1,8 @@
-function App() {
+const App = () => {
+    const title = 'CLERAX APP'
     return (
         <div className="App">
-            <h1>CLERAX</h1>
+            <h1>{title}</h1>
         </div>
     )
 }
