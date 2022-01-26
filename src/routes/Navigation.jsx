@@ -1,10 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import LoginPage from '../pages/LoginPage'
+import styles from './Navigation.module.css'
+
+const { layout } = styles
 
 const Navigation = () => {
     return (
         <BrowserRouter>
-            <div className="main-layout">
+            <div className={layout}>
                 <nav>
                     {/* <ul>
                         <li>

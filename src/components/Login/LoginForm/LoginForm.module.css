@@ -1,0 +1,14 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.width {
+    width: 400px;
+    height: 500px;
+}
+
+.mAuto {
+    margin: auto;
+}
