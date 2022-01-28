@@ -1,6 +1,6 @@
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import { Button, PageWrapper, TextInput } from '../../components'
+import { Button, PageWrapper, TextInput } from '../../../components'
 
 import styles from './LoginPage.module.css'
 

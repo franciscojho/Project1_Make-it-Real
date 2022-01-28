@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import LoginPage from '../pages/client/LoginPage'
+import LoginPage from '../pages/client/LoginPage/LoginPage'
 import styles from './Navigation.module.css'
 
 const Navigation = () => {
