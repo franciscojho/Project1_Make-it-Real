@@ -6,6 +6,9 @@
         "plugin:react-hooks/recommended",
         "plugin:jsx-a11y/recommended"
     ],
+    "globals": {
+        "React": true
+    },
     "env": {
         "browser": true,
         "jest": true
@@ -27,6 +30,9 @@
         "react/jsx-no-useless-fragment": "off",
         "react/prefer-stateless-function": [1],
         "react/static-property-placement": [1, "property assignment"],
+        "react/jsx-props-no-spreading": "off",
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off",
         "react/function-component-definition": [
             2,
             {
@@ -34,8 +40,6 @@
                 "unnamedComponents": "arrow-function"
             }
         ],
-        "react/jsx-uses-react": "off",
-        "react/react-in-jsx-scope": "off",
         "jsx-a11y/label-has-associated-control": "off",
         "no-return-assign": ["error", "except-parens"],
         "react/prop-types": "off"
