@@ -1,10 +1,11 @@
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import { Button, PageWrapper, TextInput } from '../../../components'
-
+import useAuth from '../../../hooks/useAuth'
 import styles from './LoginPage.module.css'
 
 const LoginPage = () => {
+    const { handleLogin } = useAuth()
     return (
         <PageWrapper className={styles.layout}>
             <h1 className={styles.title}>
@@ -16,7 +17,7 @@ const LoginPage = () => {
                     password: '',
                 }}
                 onSubmit={(values) => {
-                    console.log(values)
+                    handleLogin(values)
                 }}
                 validationSchema={Yup.object({
                     email: Yup.string().email('The format is incorrect').required('Requerido'),
