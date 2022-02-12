@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
                 alert.error(errorMessage)
                 return
             }
+            localStorage.setItem('token', token.token)
             setUserToken(token)
             navigate('/home')
         },
