@@ -4,20 +4,20 @@ import HomePage from '../pages/client/HomePage/HomePage'
 import useAuth from '../hooks/useAuth'
 import styles from './Navigation.module.css'
 
-const PrivateWrapper = ({ auth: { isAuth } }) => {
-    return isAuth ? <Outlet /> : <Navigate to="/login" />
+const PrivateWrapper = ({ auth: { userToken } }) => {
+    return userToken ? <Outlet /> : <Navigate to="/login" />
 }
 
 const Navigation = () => {
-    const { isAuth } = useAuth()
+    const { userToken } = useAuth()
     return (
         <div className={styles.layout}>
             <Routes>
-                <Route element={<PrivateWrapper auth={{ isAuth }} />}>
-                    <Route path="/home" element={<HomePage />} />
-                </Route>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<h1>REGISTER PAGE</h1>} />
+                <Route element={<PrivateWrapper auth={{ userToken }} />}>
+                    <Route path="/home" element={<HomePage />} />
+                </Route>
             </Routes>
         </div>
     )
