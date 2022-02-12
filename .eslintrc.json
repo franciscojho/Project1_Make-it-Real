@@ -15,6 +15,7 @@
     },
     "plugins": ["prettier", "react"],
     "parserOptions": {
+        "ecmaVersion": 2020,
         "ecmaFeatures": {
             "jsx": true
         }
