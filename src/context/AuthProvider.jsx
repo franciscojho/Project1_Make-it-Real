@@ -11,18 +11,16 @@ const AuthProvider = ({ children }) => {
 
     const navigate = useNavigate()
 
-    // const location = useLocation()
-
     const handleLogin = useCallback(
         async (values) => {
-            const token = await signInUser(values)
-            if (token.errors) {
-                const errorMessage = token.errors?.msg
+            const response = await signInUser(values)
+            if (response.errors) {
+                const errorMessage = response.errors?.msg
                 alert.error(errorMessage)
                 return
             }
-            localStorage.setItem('token', token.token)
-            setUserToken(token)
+            localStorage.setItem('token', response.token)
+            setUserToken(response.token)
             navigate('/home')
         },
         [navigate, alert]
