@@ -5,23 +5,23 @@ import useAuth from '../hooks/useAuth'
 import styles from './Navigation.module.css'
 import RegisterPage from '../pages/client/RegisterPage/RegisterPage'
 
-const PrivateWrapper = ({ auth: { userToken } }) => {
-    return userToken ? <Outlet /> : <Navigate to="/login" />
+const PrivateWrapper = ({ auth: { token } }) => {
+    return token ? <Outlet /> : <Navigate to="/login" />
 }
 
 const Navigation = () => {
-    const { userToken } = useAuth()
+    const { userState } = useAuth()
     return (
         <div className={styles.layout}>
             <Routes>
-                {!userToken && <Route path="/login" element={<LoginPage />} />}
-                {!userToken && <Route path="/register" element={<RegisterPage />} />}
-                {userToken && (
-                    <Route element={<PrivateWrapper auth={{ userToken }} />}>
+                {!userState.token && <Route path="/login" element={<LoginPage />} />}
+                {!userState.token && <Route path="/register" element={<RegisterPage />} />}
+                {userState.token && (
+                    <Route element={<PrivateWrapper auth={{ token: userState.token }} />}>
                         <Route path="/home" element={<HomePage />} />
                     </Route>
                 )}
-                <Route path="*" element={<Navigate to={userToken ? '/home' : '/login'} />} />
+                <Route path="*" element={<Navigate to={userState.token ? '/home' : '/login'} />} />
             </Routes>
         </div>
     )
