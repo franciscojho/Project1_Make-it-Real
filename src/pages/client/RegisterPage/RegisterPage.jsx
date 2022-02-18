@@ -20,7 +20,6 @@ const RegisterPage = () => {
                     password: '',
                 }}
                 onSubmit={(values) => {
-                    console.log(values)
                     handleRegister(values)
                 }}
                 validationSchema={Yup.object({
