@@ -1,7 +1,7 @@
 import { createContext, useState, useMemo, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAlert } from 'react-alert'
-import signInUser from '../helpers/signInUser'
+import * as api from '../helpers/api'
 
 export const AuthContext = createContext()
 
@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
 
     const handleLogin = useCallback(
         async (values) => {
-            const response = await signInUser(values)
+            const response = await api.signInUser(values)
             if (response.errors) {
                 const errorMessage = response.errors?.msg
                 alert.error(errorMessage)
@@ -26,7 +26,25 @@ const AuthProvider = ({ children }) => {
         [navigate, alert]
     )
 
-    const memoizedValues = useMemo(() => ({ handleLogin, userToken }), [handleLogin, userToken])
+    const handleRegister = useCallback(
+        async (values) => {
+            const response = await api.signUpUser(values)
+            if (response.errors) {
+                const errorMessage = response.errors?.msg
+                alert.error(errorMessage)
+                return
+            }
+            localStorage.setItem('token', response.token)
+            setUserToken(response.token)
+            navigate('/home')
+        },
+        [navigate, alert]
+    )
+
+    const memoizedValues = useMemo(
+        () => ({ handleLogin, handleRegister, userToken }),
+        [handleLogin, handleRegister, userToken]
+    )
 
     return <AuthContext.Provider value={memoizedValues}>{children}</AuthContext.Provider>
 }
