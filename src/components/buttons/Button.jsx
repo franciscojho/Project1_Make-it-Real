@@ -1,6 +1,6 @@
 const Button = ({ className, style, type, name }) => {
     return (
-        <button className={className} style={style} type={type ? 'button' : 'submit'}>
+        <button className={className} style={style} type={type}>
             {name}
         </button>
     )

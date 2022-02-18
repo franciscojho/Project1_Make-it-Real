@@ -15,12 +15,14 @@
     },
     "plugins": ["prettier", "react"],
     "parserOptions": {
+        "ecmaVersion": 2020,
         "ecmaFeatures": {
             "jsx": true
         }
     },
     "rules": {
         "prettier/prettier": ["error", { "endOfLine": "auto" }],
+        "no-unused-vars": ["warn"],
         "react-hooks/exhaustive-deps": "warn",
         "react-hooks/rules-of-hooks": "error",
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
@@ -33,6 +35,7 @@
         "react/jsx-props-no-spreading": "off",
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off",
+        "react/button-has-type": "off",
         "react/function-component-definition": [
             2,
             {

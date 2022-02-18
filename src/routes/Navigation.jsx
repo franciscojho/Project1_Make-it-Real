@@ -1,20 +1,28 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Navigate, Routes, Route, Outlet } from 'react-router-dom'
 import LoginPage from '../pages/client/LoginPage/LoginPage'
 import HomePage from '../pages/client/HomePage/HomePage'
-
+import useAuth from '../hooks/useAuth'
 import styles from './Navigation.module.css'
 
+const PrivateWrapper = ({ auth: { userToken } }) => {
+    return userToken ? <Outlet /> : <Navigate to="/login" />
+}
+
 const Navigation = () => {
+    const { userToken } = useAuth()
     return (
-        <BrowserRouter>
-            <div className={styles.layout}>
-                <Routes>
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/register" element={<h1>REGISTER PAGE</h1>} />
-                    <Route path="/home" element={<HomePage />} />
-                </Routes>
-            </div>
-        </BrowserRouter>
+        <div className={styles.layout}>
+            <Routes>
+                {!userToken && <Route path="/login" element={<LoginPage />} />}
+                {!userToken && <Route path="/register" element={<h1>REGISTER PAGE</h1>} />}
+                {userToken && (
+                    <Route element={<PrivateWrapper auth={{ userToken }} />}>
+                        <Route path="/home" element={<HomePage />} />
+                    </Route>
+                )}
+                <Route path="*" element={<Navigate to={userToken ? '/home' : '/login'} />} />
+            </Routes>
+        </div>
     )
 }
 

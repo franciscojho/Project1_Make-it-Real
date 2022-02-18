@@ -76,6 +76,33 @@ const HomePage = () => {
                                 <span className="clx__card-btn-2">Ver mas</span>
                             </div>
                         </div>
+                        <div className="clx__card">
+                            <img
+                                src="https://i.pravatar.cc/300"
+                                alt="avatar"
+                                className="clx__card-avatar"
+                            />
+                            <div className="clx__card-data">
+                                <h3 className="clx__card-title">Maria Perez</h3>
+                                <div className="clx__rating-wrapper">
+                                    <i className="fas fa-star" />
+                                    <i className="fas fa-star" />
+                                    <i className="fas fa-star" />
+                                    <i className="far fa-star" />
+                                    <i className="far fa-star" />
+                                </div>
+                                <p className="clx__card-desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
+                                    quos dolorem in labore animi sequi accusamus amet minus sed,
+                                    quia, recusandae quae similique, eum maiores ullam veritatis
+                                    reprehenderit odio aperiam.
+                                </p>
+                                <button type="submit" className="clx__card-btn-1">
+                                    Pedir ayuda
+                                </button>
+                                <span className="clx__card-btn-2">Ver mas</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
