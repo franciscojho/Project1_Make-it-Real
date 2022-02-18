@@ -3,6 +3,7 @@ import LoginPage from '../pages/client/LoginPage/LoginPage'
 import HomePage from '../pages/client/HomePage/HomePage'
 import useAuth from '../hooks/useAuth'
 import styles from './Navigation.module.css'
+import RegisterPage from '../pages/client/RegisterPage/RegisterPage'
 
 const PrivateWrapper = ({ auth: { userToken } }) => {
     return userToken ? <Outlet /> : <Navigate to="/login" />
@@ -14,7 +15,7 @@ const Navigation = () => {
         <div className={styles.layout}>
             <Routes>
                 {!userToken && <Route path="/login" element={<LoginPage />} />}
-                {!userToken && <Route path="/register" element={<h1>REGISTER PAGE</h1>} />}
+                {!userToken && <Route path="/register" element={<RegisterPage />} />}
                 {userToken && (
                     <Route element={<PrivateWrapper auth={{ userToken }} />}>
                         <Route path="/home" element={<HomePage />} />
