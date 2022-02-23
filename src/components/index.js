@@ -1,7 +1,8 @@
-import Container from './hocs/Container'
+import AuthHeader from './compound/AuthHeader'
+import Container from './compound/Container'
 import TextInput from './fields/TextInput'
-import PageWrapper from './hocs/PageWrapper'
+import Layout from './compound/Layout'
 import Button from './buttons/Button'
-import Card from './hocs/Card'
+import Card from './compound/Card'
 
-export { Button, Card, Container, TextInput, PageWrapper }
+export { AuthHeader, Button, Card, Container, TextInput, Layout }
