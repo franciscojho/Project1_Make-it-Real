@@ -26,32 +26,38 @@ export const AuthProvider = ({ children }) => {
         }
     }, [token])
 
-    const handleLogin = useCallback(async (values) => {
-        const response = await api.signInUser(values)
-        if (response.errors) {
-            const errorMessage = response.errors?.msg
-            alert.error(errorMessage)
-            return
-        }
-        localStorage.setItem('token', response.token)
-        dispatch({ type: AUTH_LOGIN, payload: { token: response.token, user: response.user } })
-        navigate('/home')
-    }, [])
+    const handleLogin = useCallback(
+        async (values) => {
+            const response = await api.signInUser(values)
+            if (response.errors) {
+                const errorMessage = response.errors?.msg
+                alert.error(errorMessage)
+                return
+            }
+            localStorage.setItem('token', response.token)
+            dispatch({ type: AUTH_LOGIN, payload: { token: response.token, user: response.user } })
+            navigate('/home')
+        },
+        [navigate, alert]
+    )
 
-    const handleRegister = useCallback(async (values) => {
-        const response = await api.signUpUser(values)
-        if (response.errors) {
-            const errorMessage = response.errors?.msg
-            alert.error(errorMessage)
-            return
-        }
-        localStorage.setItem('token', response.token)
-        dispatch({
-            type: AUTH_REGISTER,
-            payload: { token: response.token, user: response.user },
-        })
-        navigate('/home')
-    }, [])
+    const handleRegister = useCallback(
+        async (values) => {
+            const response = await api.signUpUser(values)
+            if (response.errors) {
+                const errorMessage = response.errors?.msg
+                alert.error(errorMessage)
+                return
+            }
+            localStorage.setItem('token', response.token)
+            dispatch({
+                type: AUTH_REGISTER,
+                payload: { token: response.token, user: response.user },
+            })
+            navigate('/home')
+        },
+        [navigate, alert]
+    )
 
     const memoizedValues = useMemo(
         () => ({ handleLogin, handleRegister, state, dispatch }),
