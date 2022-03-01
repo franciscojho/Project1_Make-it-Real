@@ -1,25 +1,27 @@
 import { Navigate, Routes, Route, Outlet } from 'react-router-dom'
 import LoginPage from '../pages/client/LoginPage/LoginPage'
 import HomePage from '../pages/client/HomePage/HomePage'
-import useAuth from '../hooks/useAuth'
 import RegisterPage from '../pages/client/RegisterPage/RegisterPage'
+import DemoPage from '../pages/client/HomePage/DemoPage'
+import { useAuthContext } from '../context/auth'
 
 const PrivateWrapper = ({ auth: { token } }) => {
     return token ? <Outlet /> : <Navigate to="/login" />
 }
 
 const Navigation = () => {
-    const { userState } = useAuth()
+    const { state } = useAuthContext()
     return (
         <Routes>
-            {!userState.token && <Route path="/login" element={<LoginPage />} />}
-            {!userState.token && <Route path="/register" element={<RegisterPage />} />}
-            {userState.token && (
-                <Route element={<PrivateWrapper auth={{ token: userState.token }} />}>
+            <Route path="/demohome" element={<DemoPage />} />
+            {state.token && (
+                <Route element={<PrivateWrapper auth={{ token: state.token }} />}>
                     <Route path="/home" element={<HomePage />} />
                 </Route>
             )}
-            <Route path="*" element={<Navigate to={userState.token ? '/home' : '/login'} />} />
+            {!state.token && <Route path="/login" element={<LoginPage />} />}
+            {!state.token && <Route path="/register" element={<RegisterPage />} />}
+            <Route path="*" element={<Navigate to={state.token ? '/home' : '/login'} />} />
         </Routes>
     )
 }
