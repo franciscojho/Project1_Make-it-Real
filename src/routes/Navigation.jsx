@@ -2,7 +2,6 @@ import { Navigate, Routes, Route, Outlet } from 'react-router-dom'
 import LoginPage from '../pages/client/LoginPage/LoginPage'
 import HomePage from '../pages/client/HomePage/HomePage'
 import RegisterPage from '../pages/client/RegisterPage/RegisterPage'
-import DemoPage from '../pages/client/HomePage/DemoPage'
 import { useAuthContext } from '../context/auth'
 
 const PrivateWrapper = ({ auth: { token } }) => {
@@ -13,7 +12,6 @@ const Navigation = () => {
     const { state } = useAuthContext()
     return (
         <Routes>
-            <Route path="/demohome" element={<DemoPage />} />
             {state.token && (
                 <Route element={<PrivateWrapper auth={{ token: state.token }} />}>
                     <Route path="/home" element={<HomePage />} />
