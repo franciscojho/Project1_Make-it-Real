@@ -1,10 +1,10 @@
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
 import { BrowserRouter } from 'react-router-dom'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 import AlertTemplate from 'react-alert-template-basic'
-import AuthProvider from './context/AuthProvider'
 import Navigation from './routes/Navigation'
+import StoreProvider from './store/Store'
 
 library.add(fab)
 
@@ -19,9 +19,9 @@ const App = () => {
     return (
         <AlertProvider template={AlertTemplate} {...options}>
             <BrowserRouter>
-                <AuthProvider>
+                <StoreProvider>
                     <Navigation />
-                </AuthProvider>
+                </StoreProvider>
             </BrowserRouter>
         </AlertProvider>
     )
