@@ -13,7 +13,6 @@ const Navigation = () => {
     const { state } = useAuthContext()
     return (
         <Routes>
-            <Route path="/demohome" element={<DemoPage />} />
             {state.token && (
                 <Route element={<PrivateWrapper auth={{ token: state.token }} />}>
                     <Route path="/home" element={<HomePage />} />
