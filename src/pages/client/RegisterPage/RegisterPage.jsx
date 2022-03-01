@@ -1,11 +1,11 @@
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import useAuth from '../../../hooks/useAuth'
 import { AuthHeader, Button, Layout, TextInput } from '../../../components'
 import { ReactComponent as Logo } from '../../../assets/logo.svg'
+import { useAuthContext } from '../../../context/auth'
 
 const RegisterPage = () => {
-    const { handleRegister } = useAuth()
+    const { handleRegister } = useAuthContext()
     return (
         <Layout className="flex flex-col md:flex-row">
             <AuthHeader loginTheme={false}>
