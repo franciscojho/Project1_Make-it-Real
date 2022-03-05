@@ -1,21 +1,24 @@
-import { createContext, useState, useMemo, useCallback, useEffect } from 'react'
+import { createContext, useMemo, useCallback, useEffect, useContext, useReducer } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAlert } from 'react-alert'
-import * as api from '../helpers/api'
+import * as api from '../api'
+import { authReducer, AUTH_LOGIN, AUTH_REGISTER } from '../reducer/auth'
 
 export const AuthContext = createContext()
 
-const AuthProvider = ({ children }) => {
-    const [userState, setUserState] = useState({})
-    const alert = useAlert()
-    const token = localStorage.getItem('token')
+export const useAuthContext = () => useContext(AuthContext)
 
+export const AuthProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(authReducer, { token: null, user: {} })
+
+    const token = localStorage.getItem('token')
     const navigate = useNavigate()
+    const alert = useAlert()
 
     useEffect(() => {
         async function validateToken() {
             const { user } = await api.verifyToken(token)
-            setUserState({ user, token })
+            dispatch({ type: AUTH_LOGIN, payload: { token, user } })
             return user
         }
         if (token) {
@@ -32,7 +35,7 @@ const AuthProvider = ({ children }) => {
                 return
             }
             localStorage.setItem('token', response.token)
-            setUserState(response.token)
+            dispatch({ type: AUTH_LOGIN, payload: { token: response.token, user: response.user } })
             navigate('/home')
         },
         [navigate, alert]
@@ -47,18 +50,19 @@ const AuthProvider = ({ children }) => {
                 return
             }
             localStorage.setItem('token', response.token)
-            setUserState(response.token)
+            dispatch({
+                type: AUTH_REGISTER,
+                payload: { token: response.token, user: response.user },
+            })
             navigate('/home')
         },
         [navigate, alert]
     )
 
     const memoizedValues = useMemo(
-        () => ({ handleLogin, handleRegister, userState }),
-        [handleLogin, handleRegister, userState]
+        () => ({ handleLogin, handleRegister, state, dispatch }),
+        [handleLogin, handleRegister, state, dispatch]
     )
 
     return <AuthContext.Provider value={memoizedValues}>{children}</AuthContext.Provider>
 }
-
-export default AuthProvider
