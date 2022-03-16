@@ -5,6 +5,7 @@ import Dashboard from '../pages/Dashboard/Dashboard'
 import { useAuthContext } from '../context/auth'
 import Navbar from './Navbar'
 import { Layout } from '../components'
+import Account from '../pages/Account/Account'
 
 const PrivateWrapper = ({ auth: { token } }) => {
     return token ? <Outlet /> : <Navigate to="/login" />
@@ -18,8 +19,8 @@ const Navigation = () => {
             <Routes>
                 {state.token && (
                     <Route element={<PrivateWrapper auth={{ token: state.token }} />}>
-                        <Route path="/dashboard" state="testing" element={<Dashboard />} />
-                        <Route path="/account" element={<h1>CUENTA</h1>} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/account" element={<Account />} />
                     </Route>
                 )}
                 {!state.token && <Route path="/login" element={<LoginPage />} />}
