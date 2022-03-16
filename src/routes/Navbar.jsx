@@ -3,8 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHomeUser, faDashboard, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import NavbarAvatar from './NavbarAvatar'
+import { useAuthContext } from '../context/auth'
+import { AUTH_LOGOUT } from '../reducer/auth'
 
 const Navbar = () => {
+    const { dispatch } = useAuthContext()
     const [currentTab, setCurrentTab] = useState('')
     const navigate = useNavigate()
 
@@ -19,6 +22,7 @@ const Navbar = () => {
 
     const handleSignOut = () => {
         localStorage.removeItem('token')
+        dispatch({ type: AUTH_LOGOUT })
         navigate('/login')
     }
 
