@@ -1,5 +1,6 @@
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
+import { Link } from 'react-router-dom'
 import { AuthHeader, Button, Layout, TextInput } from '../../components'
 import { ReactComponent as Logo } from '../../assets/logo.svg'
 import { useAuthContext } from '../../context/auth'
@@ -23,7 +24,7 @@ const RegisterPage = () => {
                                 fullName: '',
                                 email: '',
                                 dni: '',
-                                address: '',
+                                mobile: '',
                                 password: '',
                             }}
                             onSubmit={(values) => {
@@ -39,7 +40,7 @@ const RegisterPage = () => {
                                     .min(8)
                                     .max(8)
                                     .required('Requerido'),
-                                address: Yup.string().min(5).required('Requerido'),
+                                mobile: Yup.string().min(9).max(9).required('Requerido'),
                                 password: Yup.string()
                                     .matches(
                                         /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
@@ -77,9 +78,9 @@ const RegisterPage = () => {
                                         className="p-2 bg-quaternary rounded"
                                         wrapperStyles="flex flex-col gap-y-2"
                                         errorStyles="text-red-500 font-bold text-sm"
-                                        label="Dirección"
-                                        name="address"
-                                        placeholder="Av. Los Rosales 167"
+                                        label="Celular"
+                                        name="mobile"
+                                        placeholder="9 dígitos"
                                     />
                                     <TextInput
                                         className="p-2 bg-quaternary rounded"
@@ -95,13 +96,11 @@ const RegisterPage = () => {
                                         type="submit">
                                         Submit
                                     </Button>
-                                    <div
-                                        style={{
-                                            textAlign: 'center',
-                                            height: '100px',
-                                        }}>
-                                        <p>¿No tienes una cuenta? Regístrate aquí</p>
-                                        <p>¿Eres colaborador? Click aquí</p>
+                                    <div>
+                                        ¿Eres miembro?&nbsp;
+                                        <Link className="text-secondary" to="/login">
+                                            Ingresa Aquí
+                                        </Link>
                                     </div>
                                 </Form>
                             )}
