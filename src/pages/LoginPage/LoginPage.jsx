@@ -1,5 +1,6 @@
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
+import { Link } from 'react-router-dom'
 import { Button, Layout, TextInput } from '../../components'
 import { ReactComponent as Logo } from '../../assets/logo.svg'
 import { useAuthContext } from '../../context/auth'
@@ -64,8 +65,10 @@ const LoginPage = () => {
                                         Submit
                                     </Button>
                                     <div>
-                                        <p>¿Aún no miembro? Regístrate aquí</p>
-                                        <p>¿Eres colaborador? Click aquí</p>
+                                        ¿Aún no eres miembro?&nbsp;
+                                        <Link className="text-primary" to="/register">
+                                            Ingresa Aquí
+                                        </Link>
                                     </div>
                                 </Form>
                             )}
