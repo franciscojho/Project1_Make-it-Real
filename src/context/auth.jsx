@@ -9,7 +9,7 @@ export const AuthContext = createContext()
 export const useAuthContext = () => useContext(AuthContext)
 
 export const AuthProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(authReducer, { token: null, user: {} })
+    const [state, dispatch] = useReducer(authReducer, { token: null, user: {}, isLoading: false })
 
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
