@@ -9,7 +9,7 @@ export const AuthContext = createContext()
 export const useAuthContext = () => useContext(AuthContext)
 
 export const AuthProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(authReducer, { token: null, user: {} })
+    const [state, dispatch] = useReducer(authReducer, { token: null, user: {}, isLoading: false })
 
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
             dispatch({ type: AUTH_LOGIN, payload: { token: response.token, user: response.user } })
             navigate('/home')
         },
-        [navigate, alert]
+        [alert, navigate]
     )
 
     const handleRegister = useCallback(
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
             })
             navigate('/home')
         },
-        [navigate, alert]
+        [alert, navigate]
     )
 
     const memoizedValues = useMemo(

@@ -23,6 +23,7 @@
     "rules": {
         "prettier/prettier": ["error", { "endOfLine": "auto" }],
         "no-unused-vars": ["warn"],
+        "no-plusplus": "off",
         "react/display-name": "off",
         "react-hooks/exhaustive-deps": "warn",
         "react-hooks/rules-of-hooks": "error",
