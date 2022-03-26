@@ -1,20 +1,10 @@
 import { Formik, Form } from 'formik'
-import { useAlert } from 'react-alert'
-import ReactLoading from 'react-loading'
 import * as Yup from 'yup'
+import { useAlert } from 'react-alert'
 import { updateUser } from '../../api'
-import { Button } from '../../components'
-import InputText from '../../components/fields/InputText'
+import { Button, TextField, LoadingOverlay } from '../../components'
 import { useAuthContext } from '../../context/auth'
 import { USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS } from '../../reducer/auth'
-
-const LoadingOverlay = () => {
-    return (
-        <div className="flex justify-center items-center bg-gray-500 opacity-50 h-full w-full fixed inset-0">
-            <ReactLoading type="spokes" color="white" height="5%" width="5%" />
-        </div>
-    )
-}
 
 const Account = () => {
     const { state, dispatch } = useAuthContext()
@@ -63,34 +53,26 @@ const Account = () => {
                     })}>
                     {() => (
                         <Form className="flex flex-col gap-y-6 w-2/5">
-                            <div className="flex flex-col gap-y-2">
-                                <InputText
-                                    className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
-                                    label="Nombre"
-                                    name="fullName"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-y-2">
-                                <InputText
-                                    className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
-                                    label="Correo"
-                                    name="email"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-y-2">
-                                <InputText
-                                    className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
-                                    label="Celular"
-                                    name="mobile"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-y-2">
-                                <InputText
-                                    className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
-                                    label="DNI"
-                                    name="dni"
-                                />
-                            </div>
+                            <TextField
+                                className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
+                                label="Nombre"
+                                name="fullName"
+                            />
+                            <TextField
+                                className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
+                                label="Correo"
+                                name="email"
+                            />
+                            <TextField
+                                className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
+                                label="Celular"
+                                name="mobile"
+                            />
+                            <TextField
+                                className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
+                                label="DNI"
+                                name="dni"
+                            />
                             <Button
                                 className="bg-primary w-full md:max-w-[200px] px-4 py-2 text-tertiary font-bold rounded"
                                 type="submit">
