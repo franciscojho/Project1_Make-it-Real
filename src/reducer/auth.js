@@ -22,8 +22,6 @@ export const authReducer = (state, action) => {
         case USER_UPDATE_SUCCESS:
             return { ...state, user: action.payload, isLoading: false }
 
-        // case USER_ERROR_
-
         default:
             return { ...state }
     }
