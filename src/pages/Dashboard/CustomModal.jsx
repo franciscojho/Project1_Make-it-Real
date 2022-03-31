@@ -2,6 +2,8 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import Modal from 'react-modal'
 import AdForm from './AdForm'
+import useForm from '../../hooks/useForm'
+import { useModalContext } from '../../context/modal'
 
 const customStyles = {
     content: {
@@ -16,26 +18,35 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 
-const CustomModal = ({ handleSave, selectedAd, setSelectedAd, setOpen, open }) => {
-    const handleCloseModal = () => {
-        setOpen(false)
-        setSelectedAd({})
+const CustomModal = () => {
+    const { handleCreateAd, handleUpdateAd } = useForm()
+    const { selected, open, handleModal } = useModalContext()
+
+    const handleSave = (values) => {
+        if (values && !selected.id) {
+            handleCreateAd(values)
+        }
+
+        if (values && selected.id) {
+            handleUpdateAd(values, selected.id)
+        }
     }
+
     return (
         <Modal isOpen={open} style={customStyles}>
             <Formik
                 initialValues={{
-                    name: selectedAd.name || '',
-                    expirationDate: selectedAd.expirationDate || '',
-                    rate: selectedAd.rate || 0,
-                    frequency: selectedAd.frequency || '',
-                    lunchIncluded: selectedAd.lunchIncluded || false,
-                    fareIncluded: selectedAd.fareIncluded || false,
-                    description: selectedAd.description || '',
-                    region: selectedAd.region || '',
-                    province: selectedAd.province || '',
-                    city: selectedAd.city || '',
-                    addressReference: selectedAd.addressReference || '',
+                    name: selected.name || '',
+                    expirationDate: selected.expirationDate || '',
+                    rate: selected.rate || 0,
+                    frequency: selected.frequency || '',
+                    lunchIncluded: selected.lunchIncluded || false,
+                    fareIncluded: selected.fareIncluded || false,
+                    description: selected.description || '',
+                    region: selected.region || '',
+                    province: selected.province || '',
+                    city: selected.city || '',
+                    addressReference: selected.addressReference || '',
                 }}
                 onSubmit={(values) => {
                     handleSave(values)
@@ -61,7 +72,7 @@ const CustomModal = ({ handleSave, selectedAd, setSelectedAd, setOpen, open }) =
                 })}>
                 {() => <AdForm />}
             </Formik>
-            <button className="absolute top-0 right-4" onClick={handleCloseModal}>
+            <button className="absolute top-0 right-4" onClick={handleModal}>
                 x
             </button>
         </Modal>
