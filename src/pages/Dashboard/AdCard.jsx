@@ -1,7 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+import useForm from '../../hooks/useForm'
+import { useModalContext } from '../../context/modal'
 
-const AdCard = ({ ad, handleUpdate, handleDelete }) => {
+const AdCard = ({ ad }) => {
+    const { handleModal } = useModalContext()
+    const { handleDeleteAd } = useForm()
+
     const { name, status, id } = ad
 
     return (
@@ -19,12 +24,12 @@ const AdCard = ({ ad, handleUpdate, handleDelete }) => {
                 <FontAwesomeIcon
                     icon={faEdit}
                     className="cursor-pointer hover:text-secondary"
-                    onClick={() => handleUpdate(id)}
+                    onClick={() => handleModal(ad)}
                 />
                 <FontAwesomeIcon
                     icon={faTrash}
                     className="cursor-pointer text-red-500"
-                    onClick={() => handleDelete(id)}
+                    onClick={() => handleDeleteAd(id)}
                 />
             </span>
         </div>
