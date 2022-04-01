@@ -20,36 +20,32 @@ const useForm = () => {
 
     const handleCreateAd = (ad) => {
         adDispatch({ type: REQUEST_AD_API })
-        setTimeout(() => {
-            createAd(token, ad)
-                .then((res) => {
-                    adDispatch({ type: CREATE_AD_SUCCESS, payload: res })
-                    alert.success('Anuncio creado con éxito')
-                })
-                .catch(() => {
-                    alert.error('Error al crear el anuncio')
-                })
-                .finally(() => {
-                    handleModal()
-                })
-        }, 2000)
+        createAd(token, ad)
+            .then((res) => {
+                adDispatch({ type: CREATE_AD_SUCCESS, payload: res })
+                alert.success('Anuncio creado con éxito')
+            })
+            .catch(() => {
+                alert.error('Error al crear el anuncio')
+            })
+            .finally(() => {
+                handleModal()
+            })
     }
 
     const handleUpdateAd = (ad, id) => {
         adDispatch({ type: REQUEST_AD_API })
-        setTimeout(() => {
-            updateAd(token, { ...ad, id })
-                .then((res) => {
-                    adDispatch({ type: UPDATE_AD_SUCCESS, payload: { id, ad: res } })
-                    alert.success('Anuncio actualizado con éxito')
-                })
-                .catch(() => {
-                    alert.error('Error al actualizar el anuncio')
-                })
-                .finally(() => {
-                    handleModal()
-                })
-        }, 2000)
+        updateAd(token, { ...ad, id })
+            .then((res) => {
+                adDispatch({ type: UPDATE_AD_SUCCESS, payload: { id, ad: res } })
+                alert.success('Anuncio actualizado con éxito')
+            })
+            .catch(() => {
+                alert.error('Error al actualizar el anuncio')
+            })
+            .finally(() => {
+                handleModal()
+            })
     }
 
     const handleDeleteAd = (id) => {
