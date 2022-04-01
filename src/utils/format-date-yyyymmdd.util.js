@@ -1,8 +1,5 @@
-import { format } from 'date-fns'
-
 const formatDateYYYYMMDD = (dateString = '') => {
-    const date = new Date(dateString)
-    return format(date, 'yyyy-MM-dd')
+    return dateString.substring(0, 10)
 }
 
 export default formatDateYYYYMMDD
