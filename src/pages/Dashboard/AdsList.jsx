@@ -18,7 +18,7 @@ const AdsList = () => {
         adDispatch({ type: REQUEST_AD_API })
         getAds(token)
             .then((res) => adDispatch({ type: GET_ADS_SUCCESS, payload: res }))
-            .catch(() => alert('Error al obtener los anuncios'))
+            .catch(() => alert.error('Error al obtener los anuncios'))
     }, [adDispatch, alert])
 
     return (
