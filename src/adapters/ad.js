@@ -5,7 +5,7 @@ import formatDateYYYYMMDD from '../utils/format-date-yyyymmdd.util'
 export const toApiAd = (outAd) => {
     return {
         name: outAd.name,
-        expirationDate: new Date(`${outAd.expirationDate}Z`),
+        expirationDate: new Date(outAd.expirationDate).toISOString(),
         rate: outAd.rate,
         frequency: outAd.frequency,
         lunchIncluded: outAd.lunchIncluded,
