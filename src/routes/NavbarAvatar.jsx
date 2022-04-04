@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const NavbarAvatar = () => {
+const NavbarAvatar = ({ userName }) => {
     const [hexColor, setHexColor] = useState('6ab04c')
     const [loaded, setIsLoaded] = useState(false)
     const url = `https://avatar.oxro.io/avatar.svg?name=Francisco&background=${hexColor}&color=000`
@@ -31,7 +31,7 @@ const NavbarAvatar = () => {
                 alt="Avatar"
                 loading="lazy"
             />
-            <p>User</p>
+            <p>{userName}</p>
         </div>
     )
 }

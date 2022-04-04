@@ -6,6 +6,7 @@ import { useAuthContext } from '../context/auth'
 import Navbar from './Navbar'
 import { Layout } from '../components'
 import Account from '../pages/Account/Account'
+import { ModalProvider } from '../context/modal'
 
 const PrivateWrapper = ({ auth: { token } }) => {
     return token ? <Outlet /> : <Navigate to="/login" />
@@ -19,7 +20,14 @@ const Navigation = () => {
             <Routes>
                 {state.token && (
                     <Route element={<PrivateWrapper auth={{ token: state.token }} />}>
-                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route
+                            path="/dashboard"
+                            element={
+                                <ModalProvider>
+                                    <Dashboard />
+                                </ModalProvider>
+                            }
+                        />
                         <Route path="/account" element={<Account />} />
                     </Route>
                 )}

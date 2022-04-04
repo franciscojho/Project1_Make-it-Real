@@ -7,7 +7,7 @@ import { useAuthContext } from '../context/auth'
 import { AUTH_LOGOUT } from '../reducer/auth'
 
 const Navbar = () => {
-    const { dispatch } = useAuthContext()
+    const { state, dispatch } = useAuthContext()
     const [currentTab, setCurrentTab] = useState('')
     const navigate = useNavigate()
 
@@ -28,7 +28,7 @@ const Navbar = () => {
 
     return (
         <nav className="flex flex-col row-span-full col-span-2 p-6">
-            <NavbarAvatar />
+            <NavbarAvatar userName={state.user?.fullName} />
             <ul className="flex flex-col gap-2 h-full pt-8">
                 <li className="">
                     <button
