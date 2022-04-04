@@ -2,12 +2,11 @@ import { useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { getAds } from '../../api'
 import { useAdContext } from '../../context/ad'
-import { GET_ADS_SUCCESS, REQUEST_AD_API } from '../../reducer/ad'
+import { GET_ADS_SUCCESS, REQUEST_AD_API, REQUEST_AD_ERROR } from '../../reducer/ad'
 import AdCard from './AdCard'
 
-const token = localStorage.getItem('token') || ''
-
 const AdsList = () => {
+    const token = localStorage.getItem('token') || ''
     const alert = useAlert()
     const {
         adState: { ads },
@@ -18,8 +17,11 @@ const AdsList = () => {
         adDispatch({ type: REQUEST_AD_API })
         getAds(token)
             .then((res) => adDispatch({ type: GET_ADS_SUCCESS, payload: res }))
-            .catch(() => alert.error('Error al obtener los anuncios'))
-    }, [adDispatch, alert])
+            .catch(() => {
+                adDispatch({ type: REQUEST_AD_ERROR })
+                alert.error('Hubo un error al cargar los anuncios')
+            })
+    }, [adDispatch, alert, token])
 
     return (
         <div className="flex flex-col gap-2">
