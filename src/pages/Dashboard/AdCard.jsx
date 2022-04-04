@@ -10,7 +10,7 @@ const AdCard = ({ ad }) => {
     const { name, status, id } = ad
 
     return (
-        <div className="flex items-center justify-between gap-6 bg-tertiary h-24 w-3/5 px-6 py-2 rounded-lg shadow-sm">
+        <div className="flex items-center justify-between gap-6 bg-tertiary h-24 md:w-3/5 px-6 py-2 rounded-lg shadow-sm">
             <span className="flex gap-10">
                 <p className="font-bold">{name}</p>
                 <p
