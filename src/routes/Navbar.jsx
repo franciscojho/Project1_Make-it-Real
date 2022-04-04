@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHomeUser, faDashboard, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import NavbarAvatar from './NavbarAvatar'
 import { useAuthContext } from '../context/auth'
-import { AUTH_LOGOUT } from '../reducer/auth'
+import { AUTH_LOGOUT_SUCCESS, REQUEST_AUTH_API } from '../reducer/auth'
 
 const Navbar = () => {
     const { state, dispatch } = useAuthContext()
@@ -21,9 +21,12 @@ const Navbar = () => {
     }
 
     const handleSignOut = () => {
+        dispatch({ type: REQUEST_AUTH_API })
         localStorage.removeItem('token')
-        dispatch({ type: AUTH_LOGOUT })
-        navigate('/login')
+        setTimeout(() => {
+            dispatch({ type: AUTH_LOGOUT_SUCCESS, payload: { token: null, user: {} } })
+            navigate('/login')
+        }, 1000)
     }
 
     return (
