@@ -2,59 +2,88 @@ import { createContext, useMemo, useCallback, useEffect, useContext, useReducer 
 import { useNavigate } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import * as api from '../api'
-import { authReducer, AUTH_LOGIN, AUTH_REGISTER } from '../reducer/auth'
+import {
+    authReducer,
+    AUTH_LOGIN_SUCCESS,
+    AUTH_REGISTER_SUCCESS,
+    AUTH_FAILURE,
+    REQUEST_AUTH_API,
+} from '../reducer/auth'
 
 export const AuthContext = createContext()
 
 export const useAuthContext = () => useContext(AuthContext)
 
 export const AuthProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(authReducer, { token: null, user: {}, isLoading: false })
-
     const token = localStorage.getItem('token')
+
+    const [state, dispatch] = useReducer(authReducer, { token: null, user: {}, isLoading: false })
     const navigate = useNavigate()
     const alert = useAlert()
 
     useEffect(() => {
         async function validateToken() {
-            const { user } = await api.verifyToken(token)
-            dispatch({ type: AUTH_LOGIN, payload: { token, user } })
-            return user
+            try {
+                if (token) {
+                    dispatch({ type: REQUEST_AUTH_API })
+                    const { user } = await api.verifyToken(token)
+                    if (user) {
+                        dispatch({ type: AUTH_LOGIN_SUCCESS, payload: { token, user } })
+                        return
+                    }
+                    throw new Error('La sesión ha expirado')
+                }
+            } catch (error) {
+                dispatch({ type: AUTH_FAILURE })
+                navigate('/login')
+                alert.error(error.message)
+            }
         }
-        if (token) {
-            validateToken()
-        }
-    }, [token])
+        validateToken()
+    }, [alert, navigate, token])
 
     const handleLogin = useCallback(
         async (values) => {
-            const response = await api.signInUser(values)
-            if (response.errors) {
-                const errorMessage = response.errors?.msg
-                alert.error(errorMessage)
-                return
+            try {
+                dispatch({ type: REQUEST_AUTH_API })
+                const response = await api.signInUser(values)
+                if (response.token && response.user) {
+                    localStorage.setItem('token', response.token)
+                    dispatch({
+                        type: AUTH_LOGIN_SUCCESS,
+                        payload: { token: response.token, user: response.user },
+                    })
+                    navigate('/home')
+                    return
+                }
+                throw new Error(response.errors.msg)
+            } catch (error) {
+                dispatch({ type: AUTH_FAILURE })
+                alert.error(error.message)
             }
-            localStorage.setItem('token', response.token)
-            dispatch({ type: AUTH_LOGIN, payload: { token: response.token, user: response.user } })
-            navigate('/home')
         },
         [alert, navigate]
     )
 
     const handleRegister = useCallback(
         async (values) => {
-            const response = await api.signUpUser(values)
-            if (response.errors) {
-                const errorMessage = response.errors?.msg
-                alert.error(errorMessage)
-                return
+            try {
+                dispatch({ type: REQUEST_AUTH_API })
+                const response = await api.signUpUser(values)
+                if (response.token && response.user) {
+                    localStorage.setItem('token', response.token)
+                    dispatch({
+                        type: AUTH_REGISTER_SUCCESS,
+                        payload: { token: response.token, user: response.user },
+                    })
+                    navigate('/home')
+                    return
+                }
+                throw new Error(response.errors.msg)
+            } catch (error) {
+                dispatch({ type: AUTH_FAILURE })
+                alert.error(error.message)
             }
-            localStorage.setItem('token', response.token)
-            dispatch({
-                type: AUTH_REGISTER,
-                payload: { token: response.token, user: response.user },
-            })
-            navigate('/home')
         },
         [alert, navigate]
     )
