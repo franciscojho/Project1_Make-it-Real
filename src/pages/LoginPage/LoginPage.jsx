@@ -24,7 +24,6 @@ const LoginPage = () => {
                             initialValues={{
                                 email: '',
                                 password: '',
-                                userType: 'CLIENT',
                             }}
                             onSubmit={(values) => {
                                 handleLogin(values)
