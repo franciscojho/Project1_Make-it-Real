@@ -19,7 +19,7 @@ const Dashboard = () => {
             <CustomModal />
 
             <Button
-                className="bg-primary w-full md:max-w-[200px] px-4 py-2 text-tertiary font-bold rounded"
+                className="bg-primary max-w-[200px] px-4 py-2 text-tertiary font-bold rounded"
                 onClick={handleModal}>
                 Añadir Anuncio
             </Button>

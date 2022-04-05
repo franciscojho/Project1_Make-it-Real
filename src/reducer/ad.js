@@ -3,6 +3,7 @@ export const GET_ADS_SUCCESS = 'GET_ADS_SUCCESS'
 export const CREATE_AD_SUCCESS = 'CREATE_AD_SUCCESS'
 export const UPDATE_AD_SUCCESS = 'UPDATE_AD_SUCCESS'
 export const DELETE_AD_SUCCESS = 'DELETE_AD_SUCCESS'
+export const REQUEST_AD_ERROR = 'REQUEST_AD_ERROR'
 
 export const adReducer = (state, action) => {
     switch (action.type) {
@@ -24,6 +25,8 @@ export const adReducer = (state, action) => {
                 ads: state.ads.filter((ad) => ad.id !== action.payload.id),
                 isLoading: false,
             }
+        case REQUEST_AD_ERROR:
+            return { ...state, isLoading: false }
         default:
             return state
     }
