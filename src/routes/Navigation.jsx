@@ -4,7 +4,7 @@ import RegisterPage from '../pages/RegisterPage/RegisterPage'
 import Dashboard from '../pages/Dashboard/Dashboard'
 import { useAuthContext } from '../context/auth'
 import Navbar from './Navbar'
-import { Layout } from '../components'
+import { Layout, LoadingOverlay } from '../components'
 import Account from '../pages/Account/Account'
 import { ModalProvider } from '../context/modal'
 
@@ -16,6 +16,7 @@ const Navigation = () => {
     const { state } = useAuthContext()
     return (
         <Layout className={`${state.token && 'grid grid-rows-6 grid-cols-10'}`}>
+            {state.isLoading && <LoadingOverlay />}
             {state.token && <Navbar />}
             <Routes>
                 {state.token && (

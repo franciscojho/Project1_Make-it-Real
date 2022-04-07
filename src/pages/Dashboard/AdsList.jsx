@@ -14,13 +14,15 @@ const AdsList = () => {
     } = useAdContext()
 
     useEffect(() => {
-        adDispatch({ type: REQUEST_AD_API })
-        getAds(token)
-            .then((res) => adDispatch({ type: GET_ADS_SUCCESS, payload: res }))
-            .catch(() => {
-                adDispatch({ type: REQUEST_AD_ERROR })
-                alert.error('Hubo un error al cargar los anuncios')
-            })
+        if (token) {
+            adDispatch({ type: REQUEST_AD_API })
+            getAds(token)
+                .then((res) => adDispatch({ type: GET_ADS_SUCCESS, payload: res }))
+                .catch((error) => {
+                    adDispatch({ type: REQUEST_AD_ERROR })
+                    alert.error(error.message)
+                })
+        }
     }, [adDispatch, alert, token])
 
     return (

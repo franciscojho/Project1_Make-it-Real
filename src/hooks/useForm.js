@@ -6,12 +6,12 @@ import {
     CREATE_AD_SUCCESS,
     DELETE_AD_SUCCESS,
     REQUEST_AD_API,
+    REQUEST_AD_ERROR,
     UPDATE_AD_SUCCESS,
 } from '../reducer/ad'
 
-const token = localStorage.getItem('token') || ''
-
 const useForm = () => {
+    const token = localStorage.getItem('token') || ''
     const alert = useAlert()
     const { handleModal } = useModalContext()
     const { adState, adDispatch } = useAdContext()
@@ -26,6 +26,7 @@ const useForm = () => {
                 alert.success('Anuncio creado con éxito')
             })
             .catch(() => {
+                adDispatch({ type: REQUEST_AD_ERROR })
                 alert.error('Error al crear el anuncio')
             })
             .finally(() => {
@@ -41,6 +42,7 @@ const useForm = () => {
                 alert.success('Anuncio actualizado con éxito')
             })
             .catch(() => {
+                adDispatch({ type: REQUEST_AD_ERROR })
                 alert.error('Error al actualizar el anuncio')
             })
             .finally(() => {
@@ -56,6 +58,7 @@ const useForm = () => {
                 alert.success('Anuncio eliminado con éxito')
             })
             .catch(() => {
+                adDispatch({ type: REQUEST_AD_ERROR })
                 alert.error('Error al borrar el anuncio')
             })
     }

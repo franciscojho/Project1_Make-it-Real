@@ -1,26 +1,40 @@
-export const AUTH_LOGIN = 'AUTH_LOGIN'
-export const AUTH_LOGOUT = 'AUTH_LOGOUT'
-export const AUTH_REGISTER = 'AUTH_REGISTER'
+export const REQUEST_AUTH_API = 'REQUEST_AUTH_API'
+export const AUTH_LOGIN_SUCCESS = 'AUTH_LOGIN_SUCCESS'
+export const AUTH_LOGOUT_SUCCESS = 'AUTH_LOGOUT_SUCCESS'
+export const AUTH_REGISTER_SUCCESS = 'AUTH_REGISTER_SUCCESS'
 export const USER_UPDATE_REQUEST = 'USER_UPDATE_REQUEST'
 export const USER_UPDATE_SUCCESS = 'USER_UPDATE_SUCCESS'
-export const USER_LOADING = 'USER_LOADING'
+export const AUTH_FAILURE = 'AUTH_FAILURE'
 
 export const authReducer = (state, action) => {
     switch (action.type) {
-        case AUTH_LOGIN:
-            return { ...state, token: action.payload.token, user: action.payload.user }
-
-        case AUTH_LOGOUT:
-            return { ...state, token: null, user: null }
-
-        case AUTH_REGISTER:
-            return { ...state, token: action.payload.token, user: action.payload.user }
-
-        case USER_UPDATE_REQUEST:
+        case REQUEST_AUTH_API:
             return { ...state, isLoading: true }
+
+        case AUTH_LOGIN_SUCCESS:
+            return {
+                ...state,
+                token: action.payload.token,
+                user: action.payload.user,
+                isLoading: false,
+            }
+
+        case AUTH_LOGOUT_SUCCESS:
+            return { ...state, token: null, user: null, isLoading: false }
+
+        case AUTH_REGISTER_SUCCESS:
+            return {
+                ...state,
+                token: action.payload.token,
+                user: action.payload.user,
+                isLoading: false,
+            }
 
         case USER_UPDATE_SUCCESS:
             return { ...state, user: action.payload, isLoading: false }
+
+        case AUTH_FAILURE:
+            return { ...state, user: null, token: null, isLoading: false }
 
         default:
             return { ...state }
