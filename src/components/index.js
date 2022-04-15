@@ -11,6 +11,7 @@ import SelectField from './fields/SelectField'
 import TextareaField from './fields/TextareaField'
 import TextField from './fields/TextField'
 import LoadingOverlay from './other/LoadingOverlay'
+import PrivateWrapper from './other/PrivateWrapper'
 
 export {
     AuthHeader,
@@ -26,4 +27,5 @@ export {
     TextareaField,
     TextField,
     LoadingOverlay,
+    PrivateWrapper,
 }
