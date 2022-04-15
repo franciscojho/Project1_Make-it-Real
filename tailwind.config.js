@@ -25,6 +25,9 @@ module.exports = {
                 quaternary: '#f3f3f4',
                 quinary: '#000',
             },
+            backgroundImage: {
+                'cleaning-banner': "url('/src/assets/cleaning-banner.png')",
+            },
         },
     },
     plugins: [],
