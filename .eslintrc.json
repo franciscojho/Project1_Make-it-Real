@@ -21,6 +21,10 @@
         }
     },
     "rules": {
+        "import/no-extraneous-dependencies": [
+            "error",
+            { "devDependencies": ["**/*.test.js", "**/*.spec.js", "**/setupTests.js"] }
+        ],
         "prettier/prettier": ["error", { "endOfLine": "auto" }],
         "no-unused-vars": ["warn"],
         "no-plusplus": "off",
