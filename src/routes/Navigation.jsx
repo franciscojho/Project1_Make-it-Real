@@ -31,7 +31,7 @@ const Navigation = () => {
                 )}
                 {!state.token && <Route path="/login" element={<LoginPage />} />}
                 {!state.token && <Route path="/register" element={<RegisterPage />} />}
-                <Route path="/public" element={<PublicPage />} />
+                {!state.token && <Route path="/public" element={<PublicPage />} />}
                 <Route path="*" element={<Navigate to={state.token ? '/dashboard' : '/login'} />} />
             </Routes>
         </Layout>
