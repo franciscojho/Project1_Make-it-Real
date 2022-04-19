@@ -30,12 +30,12 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="flex flex-col row-span-full col-span-2 p-6">
+        <nav className="flex border-b-2 md:flex-col justify-between row-span-1 col-span-full md:row-span-full md:col-span-2 p-6">
             <NavbarAvatar userName={state.user?.fullName} />
-            <ul className="flex flex-col gap-2 h-full pt-8">
-                <li className="">
+            <ul className="flex items-center md:items-start md:flex-col gap-2 h-full md:pt-8">
+                <li className="w-full">
                     <button
-                        className={`flex gap-4 items-center font-bold p-2 rounded text-left w-full ${
+                        className={`flex gap-2 items-center font-bold p-2 rounded text-left w-full ${
                             currentTab === '1'
                                 ? 'bg-secondary text-tertiary'
                                 : 'text-slate-400 hover:text-tertiary hover:bg-secondary'
@@ -46,9 +46,9 @@ const Navbar = () => {
                         Dashboard
                     </button>
                 </li>
-                <li>
+                <li className="w-full">
                     <button
-                        className={`flex gap-4 items-center font-bold p-2 rounded text-left w-full ${
+                        className={`flex gap-2 items-center font-bold p-2 rounded text-left w-full ${
                             currentTab === '2'
                                 ? 'bg-secondary text-tertiary'
                                 : 'text-slate-400 hover:text-tertiary hover:bg-secondary'
@@ -59,12 +59,12 @@ const Navbar = () => {
                         Cuenta
                     </button>
                 </li>
-                <li className="mt-auto">
+                <li className="md:mt-auto">
                     <button
                         className="flex gap-4 items-center font-bold p-2 rounded text-left text-slate-400 w-full hover:text-tertiary hover:bg-red-400"
                         onClick={handleSignOut}>
                         <FontAwesomeIcon icon={faSignOutAlt} />
-                        Cerrar Sesión
+                        <span className="hidden md:block">Cerrar Sesión</span>
                     </button>
                 </li>
             </ul>
