@@ -1,7 +1,6 @@
 import { useAlert } from 'react-alert'
 import { createAd, deleteAd, updateAd } from '../api'
 import { useAdContext } from '../context/ad'
-import { useModalContext } from '../context/modal'
 import {
     CREATE_AD_SUCCESS,
     DELETE_AD_SUCCESS,
@@ -9,11 +8,12 @@ import {
     REQUEST_AD_ERROR,
     UPDATE_AD_SUCCESS,
 } from '../reducer/ad'
+import useModal from './useModal'
 
 const useForm = () => {
     const token = localStorage.getItem('token') || ''
     const alert = useAlert()
-    const { handleModal } = useModalContext()
+    const { closeModal } = useModal()
     const { adState, adDispatch } = useAdContext()
 
     const { isLoading } = adState
@@ -30,7 +30,7 @@ const useForm = () => {
                 alert.error('Error al crear el anuncio')
             })
             .finally(() => {
-                handleModal()
+                closeModal()
             })
     }
 
@@ -46,7 +46,7 @@ const useForm = () => {
                 alert.error('Error al actualizar el anuncio')
             })
             .finally(() => {
-                handleModal()
+                closeModal()
             })
     }
 
