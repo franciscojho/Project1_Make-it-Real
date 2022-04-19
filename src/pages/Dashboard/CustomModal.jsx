@@ -19,7 +19,7 @@ const customStyles = {
 Modal.setAppElement('#root')
 
 const CustomModal = () => {
-    const { open, selected, action, closeModal } = useModal()
+    const { open, selected, closeModal } = useModal()
     const { handleCreateAd, handleUpdateAd } = useForm()
 
     const handleSave = (values) => {
