@@ -1,16 +1,13 @@
-import { Navigate, Routes, Route, Outlet } from 'react-router-dom'
+import { Navigate, Routes, Route } from 'react-router-dom'
 import LoginPage from '../pages/LoginPage/LoginPage'
 import RegisterPage from '../pages/RegisterPage/RegisterPage'
 import Dashboard from '../pages/Dashboard/Dashboard'
-import { useAuthContext } from '../context/auth'
-import Navbar from './Navbar'
-import { Layout, LoadingOverlay } from '../components'
 import Account from '../pages/Account/Account'
+import Navbar from './Navbar'
 import { ModalProvider } from '../context/modal'
-
-const PrivateWrapper = ({ auth: { token } }) => {
-    return token ? <Outlet /> : <Navigate to="/login" />
-}
+import { useAuthContext } from '../context/auth'
+import { Layout, LoadingOverlay, PrivateWrapper } from '../components'
+import PublicPage from '../pages/PublicPage/PublicPage'
 
 const Navigation = () => {
     const { state } = useAuthContext()
@@ -34,6 +31,7 @@ const Navigation = () => {
                 )}
                 {!state.token && <Route path="/login" element={<LoginPage />} />}
                 {!state.token && <Route path="/register" element={<RegisterPage />} />}
+                {!state.token && <Route path="/public" element={<PublicPage />} />}
                 <Route path="*" element={<Navigate to={state.token ? '/dashboard' : '/login'} />} />
             </Routes>
         </Layout>

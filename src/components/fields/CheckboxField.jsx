@@ -1,9 +1,12 @@
 import { ErrorMessage, useField } from 'formik'
 
-const CheckboxField = ({ label, className, ...props }) => {
+const Wrapper = ({ condition, children }) =>
+    condition ? <div className="flex flex-col gap-y-2 w-full">{children}</div> : children
+
+const CheckboxField = ({ label, className, setWrapper, ...props }) => {
     const [field] = useField(props)
     return (
-        <div className="flex flex-col gap-y-2 w-full">
+        <Wrapper condition={setWrapper}>
             {label && <label htmlFor={field.name}>{label}</label>}
             <input className={className} {...props} {...field} type="checkbox" />
             <ErrorMessage
@@ -11,7 +14,7 @@ const CheckboxField = ({ label, className, ...props }) => {
                 name={field.name}
                 component="span"
             />
-        </div>
+        </Wrapper>
     )
 }
 
