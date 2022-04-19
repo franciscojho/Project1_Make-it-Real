@@ -3,7 +3,7 @@ import * as Yup from 'yup'
 import Modal from 'react-modal'
 import AdForm from './AdForm'
 import useForm from '../../hooks/useForm'
-import { useModalContext } from '../../context/modal'
+import useModal from '../../hooks/useModal'
 
 const customStyles = {
     content: {
@@ -19,8 +19,8 @@ const customStyles = {
 Modal.setAppElement('#root')
 
 const CustomModal = () => {
+    const { open, selected, closeModal } = useModal()
     const { handleCreateAd, handleUpdateAd } = useForm()
-    const { selected, open, handleModal } = useModalContext()
 
     const handleSave = (values) => {
         if (values && !selected.id) {
@@ -36,17 +36,17 @@ const CustomModal = () => {
         <Modal isOpen={open} style={customStyles}>
             <Formik
                 initialValues={{
-                    name: selected.name || '',
-                    expirationDate: selected.expirationDate || '',
-                    rate: selected.rate || 0,
-                    frequency: selected.frequency || '',
-                    lunchIncluded: selected.lunchIncluded || false,
-                    fareIncluded: selected.fareIncluded || false,
-                    description: selected.description || '',
-                    region: selected.region || '',
-                    province: selected.province || '',
-                    city: selected.city || '',
-                    addressReference: selected.addressReference || '',
+                    name: '',
+                    expirationDate: '',
+                    rate: 0,
+                    frequency: '',
+                    lunchIncluded: false,
+                    fareIncluded: false,
+                    description: '',
+                    region: '',
+                    province: '',
+                    city: '',
+                    addressReference: '',
                 }}
                 onSubmit={(values) => {
                     handleSave(values)
@@ -72,7 +72,7 @@ const CustomModal = () => {
                 })}>
                 {() => <AdForm />}
             </Formik>
-            <button className="absolute top-0 right-4" onClick={handleModal}>
+            <button className="absolute top-0 right-4" onClick={closeModal}>
                 x
             </button>
         </Modal>

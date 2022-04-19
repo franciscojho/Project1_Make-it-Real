@@ -65,9 +65,9 @@ export const updateUser = async ({ token, values }) => {
     }
 }
 
-export const getAds = async (token) => {
+export const getAds = async (token, queryString) => {
     try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/adverts`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/adverts?${queryString}`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`,

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
 import { Form, useFormikContext } from 'formik'
 import { ubigeo } from 'peruuse'
@@ -10,13 +11,26 @@ import {
     TextareaField,
     TextField,
 } from '../../components'
+import useModal from '../../hooks/useModal'
 
 const regions = ubigeo.getDepartments()
 
 const AdForm = () => {
-    const { values } = useFormikContext()
+    const { selected, action } = useModal()
+    const { values, setValues } = useFormikContext()
     const [provinces, setProvinces] = useState([])
     const [cities, setCities] = useState([])
+    const [disabled, setDisabled] = useState(false)
+
+    useEffect(() => {
+        if (action === 'view') {
+            setDisabled(true)
+        }
+    }, [])
+
+    useEffect(() => {
+        setValues({ ...values, ...selected })
+    }, [selected])
 
     useEffect(() => {
         setProvinces(ubigeo.getProvince(values.region))
@@ -30,12 +44,14 @@ const AdForm = () => {
         <Form className="flex flex-col gap-4">
             <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
                 <TextField
+                    disabled={disabled}
                     className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
                     label="Nombre de anuncio"
                     name="name"
                     placeholder="Nombre de anuncio"
                 />
                 <DateField
+                    disabled={disabled}
                     className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
                     label="Fecha de expiración"
                     name="expirationDate"
@@ -43,6 +59,7 @@ const AdForm = () => {
             </div>
             <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
                 <NumberField
+                    disabled={disabled}
                     className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
                     currencySymbol="S/."
                     label="Tarifa"
@@ -50,6 +67,7 @@ const AdForm = () => {
                     type="number"
                 />
                 <SelectField
+                    disabled={disabled}
                     className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
                     label="Frecuencia de limpieza"
                     name="frequency">
@@ -63,11 +81,13 @@ const AdForm = () => {
             </div>
             <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
                 <CheckboxField
+                    disabled={disabled}
                     label="¿Almuerzo incluído?"
                     name="lunchIncluded"
                     checked={values.lunchIncluded}
                 />
                 <CheckboxField
+                    disabled={disabled}
                     label="¿Pasaje incluído?"
                     name="fareIncluded"
                     checked={values.fareIncluded}
@@ -75,6 +95,7 @@ const AdForm = () => {
             </div>
             <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
                 <TextareaField
+                    disabled={disabled}
                     className="py-1 px-2 border-gray-400 border-[1px] h-20 rounded-md"
                     label="Descripción"
                     name="description"
@@ -82,6 +103,7 @@ const AdForm = () => {
             </div>
             <div className="flex flex-col lg:flex-row lg:justify-between flex-wrap gap-4">
                 <SelectField
+                    disabled={disabled}
                     className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
                     label="Departamento"
                     name="region">
@@ -93,6 +115,7 @@ const AdForm = () => {
                     ))}
                 </SelectField>
                 <SelectField
+                    disabled={disabled}
                     className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
                     label="Provincia"
                     name="province">
@@ -104,6 +127,7 @@ const AdForm = () => {
                     ))}
                 </SelectField>
                 <SelectField
+                    disabled={disabled}
                     className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
                     label="Distrito"
                     name="city">
@@ -117,16 +141,19 @@ const AdForm = () => {
             </div>
             <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
                 <TextareaField
+                    disabled={disabled}
                     className="py-1 px-2 border-gray-400 border-[1px] h-20 rounded-md"
                     label="Dirección referencial"
                     name="addressReference"
                 />
             </div>
-            <Button
-                className="bg-primary w-full lg:max-w-[200px] px-4 py-2 text-tertiary font-bold rounded"
-                type="submit">
-                Guardar
-            </Button>
+            {!disabled && (
+                <Button
+                    className="bg-primary w-full lg:max-w-[200px] px-4 py-2 text-tertiary font-bold rounded"
+                    type="submit">
+                    Guardar
+                </Button>
+            )}
         </Form>
     )
 }

@@ -25,13 +25,13 @@ const NavbarAvatar = ({ userName }) => {
                 </div>
             )}
             <img
-                className="w-40 max-w-full self-center rounded-full"
+                className="md:w-40 w-16 max-w-full self-center rounded-full"
                 src={`${url}`}
                 onLoad={() => setIsLoaded(true)}
                 alt="Avatar"
                 loading="lazy"
             />
-            <p>{userName}</p>
+            <p className="text-center hidden md:block">{userName}</p>
         </div>
     )
 }

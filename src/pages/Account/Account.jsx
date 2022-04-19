@@ -24,7 +24,7 @@ const Account = () => {
     }
 
     return (
-        <section className="bg-quaternary p-6 row-span-full col-span-8">
+        <section className="bg-quaternary p-6 row-span-5 col-span-full md:row-span-full md:col-span-8">
             {isLoading && <LoadingOverlay />}
             <div className="flex flex-col bg-tertiary p-6 w-full h-full rounded-md">
                 <h2 className="font-bold text-2xl">Configuración de la cuenta</h2>
@@ -52,7 +52,7 @@ const Account = () => {
                             .required('El DNI es requerido'),
                     })}>
                     {() => (
-                        <Form className="flex flex-col gap-y-6 w-2/5">
+                        <Form className="flex flex-col gap-y-6 md:w-2/5">
                             <TextField
                                 className="py-1 px-2 border-gray-400 border-[1px] rounded-md"
                                 label="Nombre"

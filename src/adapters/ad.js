@@ -34,9 +34,9 @@ export const fromApiAd = (inAd) => {
         addressReference: ad.addressReference,
         userId: ad.user,
         id: ad._id,
-        status: ad.status,
-        createdAt: ad.createdAt,
-        updatedAt: ad.updatedAt,
+        expired: ad.expired,
+        createdAt: formatDateYYYYMMDD(ad.createdAt),
+        updatedAt: formatDateYYYYMMDD(ad.updatedAt),
     }
 }
 

@@ -1,4 +1,4 @@
-import { Navigate, Routes, Route } from 'react-router-dom'
+import { Navigate, Routes, Route, useLocation } from 'react-router-dom'
 import LoginPage from '../pages/LoginPage/LoginPage'
 import RegisterPage from '../pages/RegisterPage/RegisterPage'
 import Dashboard from '../pages/Dashboard/Dashboard'
@@ -11,10 +11,14 @@ import PublicPage from '../pages/PublicPage/PublicPage'
 
 const Navigation = () => {
     const { state } = useAuthContext()
+    const location = useLocation()
+    const isPrivate =
+        location.pathname.includes('dashboard') || location.pathname.includes('account')
+
     return (
-        <Layout className={`${state.token && 'grid grid-rows-6 grid-cols-10'}`}>
+        <Layout className={`${state.token && isPrivate && 'grid grid-rows-6 grid-cols-10'}`}>
             {state.isLoading && <LoadingOverlay />}
-            {state.token && <Navbar />}
+            {state.token && isPrivate && <Navbar />}
             <Routes>
                 {state.token && (
                     <Route element={<PrivateWrapper auth={{ token: state.token }} />}>
@@ -31,7 +35,7 @@ const Navigation = () => {
                 )}
                 {!state.token && <Route path="/login" element={<LoginPage />} />}
                 {!state.token && <Route path="/register" element={<RegisterPage />} />}
-                {!state.token && <Route path="/public" element={<PublicPage />} />}
+                <Route path="/public" element={<PublicPage />} />
                 <Route path="*" element={<Navigate to={state.token ? '/dashboard' : '/login'} />} />
             </Routes>
         </Layout>
