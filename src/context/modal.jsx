@@ -1,25 +1,17 @@
 import { createContext, useContext, useMemo, useState } from 'react'
 
-/* eslint-disable react-hooks/exhaustive-deps */
-
 export const ModalContext = createContext()
 
 export const useModalContext = () => useContext(ModalContext)
 
 export const ModalProvider = ({ children }) => {
     const [open, setOpen] = useState(false)
-    const [selected, setSelected] = useState({})
-
-    const handleModal = (item) => {
-        if (item) {
-            setSelected(item)
-        }
-        setOpen(!open)
-    }
+    const [action, setAction] = useState('')
+    const [selected, setSelected] = useState(null)
 
     const memoizedValues = useMemo(
-        () => ({ open, handleModal, selected, setSelected }),
-        [open, handleModal, selected, setSelected]
+        () => ({ open, setOpen, selected, setSelected, action, setAction }),
+        [open, setOpen, selected, setSelected, action, setAction]
     )
 
     return <ModalContext.Provider value={memoizedValues}>{children}</ModalContext.Provider>
