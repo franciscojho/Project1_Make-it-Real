@@ -28,7 +28,7 @@ const Header = () => {
                     <SelectField
                         className="py-1 px-2 my-1 border-gray-400 border-[1px] rounded-md"
                         name="department">
-                        <option value="">Selecciona una opción</option>
+                        <option value="">Selecciona un departamento</option>
                         {departments.map(({ code, name }) => (
                             <option key={code} value={code}>
                                 {name}
@@ -38,7 +38,7 @@ const Header = () => {
                     <SelectField
                         className="py-1 px-2 my-1 border-gray-400 border-[1px] rounded-md"
                         name="province">
-                        <option value="">Selecciona una opción</option>
+                        <option value="">Selecciona una provincia</option>
                         {provinces.map(({ code, name }) => (
                             <option key={code} value={code}>
                                 {name}
@@ -48,7 +48,7 @@ const Header = () => {
                     <SelectField
                         className="py-1 px-2 my-1 border-gray-400 border-[1px] rounded-md"
                         name="district">
-                        <option value="">Selecciona una opción</option>
+                        <option value="">Selecciona un distrito</option>
                         {districts.map(({ code, name }) => (
                             <option key={code} value={code}>
                                 {name}
