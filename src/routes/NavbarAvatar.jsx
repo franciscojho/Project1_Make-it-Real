@@ -1,21 +1,17 @@
 import { useState, useEffect } from 'react'
+import getFirstName from '../utils/get-first-name.uti'
+import generateRandomColor from '../utils/generate-random-color.util'
 
 const NavbarAvatar = ({ userName }) => {
+    const [firstName, setFirstName] = useState('')
     const [hexColor, setHexColor] = useState('6ab04c')
     const [loaded, setIsLoaded] = useState(false)
-    const url = `https://avatar.oxro.io/avatar.svg?name=Francisco&background=${hexColor}&color=000`
+    const url = `https://avatar.oxro.io/avatar.svg?name=${firstName}&background=${hexColor}&color=000`
 
     useEffect(() => {
-        function generateRandomColor() {
-            const letters = '0123456789ABCDEF'
-            let color = ''
-            for (let index = 0; index < 6; index++) {
-                color += letters[Math.floor(Math.random() * 16)]
-            }
-            setHexColor(color)
-        }
-        generateRandomColor()
-    }, [])
+        setHexColor(generateRandomColor())
+        setFirstName(getFirstName(userName))
+    }, [userName])
 
     return (
         <div className="flex flex-col gap-4 items-center">
