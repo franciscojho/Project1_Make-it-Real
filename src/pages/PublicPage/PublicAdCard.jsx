@@ -48,11 +48,11 @@ const PublicAdCard = ({ ad }) => {
                 </p>
             </div>
             <p className="text-sm">
-                <span className="font-bold">Decripcion: </span>
+                <span className="font-bold">Descripción: </span>
                 {ad.description}
             </p>
             <p className="text-sm">
-                <span className="font-bold">Ubicacion: </span>
+                <span className="font-bold">Ubicación: </span>
                 {`${department}, ${province}, ${district}`}
             </p>
             <p className="text-sm">
@@ -66,7 +66,7 @@ const PublicAdCard = ({ ad }) => {
             <Button
                 className="bg-green-600 max-w-[200px] px-4 py-2 text-tertiary font-bold rounded"
                 onClick={handleOpenWhatsApp}>
-                Abrir WhatsApp Web
+                Contactar
             </Button>
         </section>
     )

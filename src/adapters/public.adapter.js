@@ -1,5 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 
+const translatedValues = {
+    once: 'Única Vez',
+    daily: 'Diario',
+    weekly: 'Semanal',
+    monthly: 'Mensual',
+    tbd: 'A discutir',
+}
+
 const fromPublicApi = (data) => {
     const formattedData = data.map((item) => ({
         id: item._id,
@@ -8,7 +16,7 @@ const fromPublicApi = (data) => {
         rate: item.rate,
         description: item.description,
         status: item.status,
-        frequency: item.frequency,
+        frequency: translatedValues[item.frequency],
         fareIncluded: item.fareIncluded,
         lunchIncluded: item.lunchIncluded,
         locationReference: item.addressReference,
