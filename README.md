@@ -8,4 +8,5 @@ This is an application developed to help people find trusted house cleaners easi
 
 ## Demo
 
-[https://clerax-app.netlify.app/login](https://clerax-app.netlify.app/login)
+Login: [https://cleraxapp.netlify.app/login](https://cleraxapp.netlify.app/login)</br>
+Cleaning Ads: [https://cleraxapp.netlify.app/public](https://cleraxapp.netlify.app/public)
